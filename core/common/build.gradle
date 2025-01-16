@@ -1,0 +1,23 @@
+apply plugin: 'java-library'
+apply plugin: 'maven-publish'
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.example'
+            artifactId = 'common'
+            version = "${commonVersion}"
+
+            from components.java
+        }
+    }
+
+    repositories {
+//        maven {}
+    }
+}
+
+dependencies {
+    implementation "org.springframework.boot:spring-boot-starter-web:${springBootExternalVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa:${springBootExternalVersion}"
+}

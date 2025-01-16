@@ -1,0 +1,24 @@
+apply plugin: 'java-library'
+apply plugin: 'maven-publish'
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.example'
+            artifactId = 'user-api'
+            version = "${apiVersion}"
+
+            from components.java
+        }
+    }
+
+    repositories {
+        maven {}
+    }
+}
+
+dependencies {
+    implementation libsOuter.jackson.core
+    implementation libsOuter.jackson.annotations
+    implementation libsOuter.jackson.databind
+}

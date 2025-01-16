@@ -1,0 +1,65 @@
+apply plugin: 'version-catalog'
+apply plugin: 'maven-publish'
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.example'
+            artifactId = 'bom-outer'
+            version = "${bomOuterVersion}"
+
+            from components.versionCatalog
+        }
+    }
+
+    repositories {
+//        maven {}
+    }
+}
+
+catalog {
+    versionCatalog {
+        plugin('springBoot', 'org.springframework.boot').version("${springBootExternalVersion}")
+        plugin('dependencyManagement', 'io.spring.dependency-management').version("${dependencyManagementExternalVersion}")
+
+        library('spring.boot.starter.web', "org.springframework.boot:spring-boot-starter-web:${springBootExternalVersion}")
+        library('spring.boot.starter.test', "org.springframework.boot:spring-boot-starter-test:${springBootExternalVersion}")
+
+        library('spring.boot.starter.data.jpa', "org.springframework.boot:spring-boot-starter-data-jpa:${springBootExternalVersion}")
+//        library('spring.boot.starter.security', "org.springframework.boot:spring-boot-starter-security:${springBootExternalVersion}")
+//        library('spring.boot.starter.oauth2.client', "org.springframework.boot:spring-boot-starter-oauth2-client:${springBootExternalVersion}")
+        library('spring.boot.starter.actuator', "org.springframework.boot:spring-boot-starter-actuator:${springBootExternalVersion}")
+        library('spring.boot.devtools', "org.springframework.boot:spring-boot-devtools:${springBootExternalVersion}")
+
+        library('lombok', "org.projectlombok:lombok:${lombokExternalVersion}")
+        library('lombok.processor', "org.projectlombok:lombok:${lombokExternalVersion}")
+
+        library('mapstruct', "org.mapstruct:mapstruct:${mapstructExternalVersion}")
+        library('mapstruct.processor', "org.mapstruct:mapstruct-processor:${mapstructExternalVersion}")
+
+        library('jackson.core', "com.fasterxml.jackson.core:jackson-core:${jacksonExternalVersion}")
+        library('jackson.annotations', "com.fasterxml.jackson.core:jackson-annotations:${jacksonExternalVersion}")
+        library('jackson.databind', "com.fasterxml.jackson.core:jackson-databind:${jacksonExternalVersion}")
+
+//        library('javers.core', "org.javers:javers-core:${javersExternalVersion}")
+
+
+
+
+
+//        library('openfeign', "org.springframework.cloud:spring-cloud-starter-openfeign:${openfeignExternalVersion}")
+//        library('flyway', "org.flywaydb:flyway-core:${flywayExternalVersion}")
+//        library('swagger', "org.springdoc:springdoc-openapi-starter-webmvc-ui:${swaggerExternalVersion}")
+
+        library('postgres', "org.postgresql:postgresql:${postgresExternalVersion}")
+//        library('s3', "io.awspring.cloud:spring-cloud-aws-starter-s3:${s3ExternalVersion}")
+
+//        library('redis', "org.springframework.data:spring-data-redis:${springBootExternalVersion}")
+//        library('redisson', "org.redisson:redisson:${redissonExternalVersion}")
+
+        library('spring.kafka', "org.springframework.kafka:spring-kafka:${kafkaExternalVersion}")
+//        library('amqp', "org.springframework.boot:spring-boot-starter-amqp:${springBootExternalVersion}")
+
+        library('datafaker', "net.datafaker:datafaker:${datafakerExternalVersion}")
+    }
+}

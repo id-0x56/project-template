@@ -1,0 +1,27 @@
+apply plugin: 'version-catalog'
+apply plugin: 'maven-publish'
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.example'
+            artifactId = 'bom-inner'
+            version = "${bomInnerVersion}"
+
+            from components.versionCatalog
+        }
+    }
+
+    repositories {
+//        maven {}
+    }
+}
+
+catalog {
+    versionCatalog {
+        library('common', 'com.example:common:1.0.+')
+        library('kafka', 'com.example:kafka:1.0.+')
+
+        library('user.api', 'com.example:user-api:1.0.+')
+    }
+}

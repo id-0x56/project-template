@@ -1,0 +1,42 @@
+rootProject.name = 'core'
+
+include('common')
+include('bom-inner')
+include('bom-outer')
+include('kafka')
+
+gradle.allprojects {
+    ext {
+        // Internal
+        commonVersion = '1.0.0'
+        bomInnerVersion = '1.0.0'
+        bomOuterVersion = '1.0.0'
+        kafkaVersion = '1.0.0'
+
+        // External
+        lombokExternalVersion = '1.18.36'
+
+        springBootExternalVersion = '3.4.1'
+        dependencyManagementExternalVersion = '1.1.7'
+
+        mapstructExternalVersion = '1.6.3'
+
+        jacksonExternalVersion = '2.18.2'
+
+//        javersVersion = '7.7.0'
+
+//        openfeignExternalVersion = '4.1.3'
+//        flywayExternalVersion = '9.22.3'
+//        flywayExternalVersion = '10.20.1'
+//        swaggerExternalVersion = '2.6.0'
+
+        postgresExternalVersion = '42.7.5'
+//        s3ExternalVersion = '3.2.1'
+
+//        redissonExternalVersion = '3.38.1'
+
+        kafkaExternalVersion = '3.3.1'
+
+        datafakerExternalVersion = '2.4.2'
+    }
+}

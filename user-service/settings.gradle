@@ -1,0 +1,29 @@
+rootProject.name = 'user-service'
+
+include('api')
+include('service')
+
+gradle.allprojects {
+    ext {
+        apiVersion = '1.0.0'
+        serviceVersion = '1.0.0'
+    }
+}
+
+dependencyResolutionManagement {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+//        maven {}
+    }
+
+    versionCatalogs {
+        libsOuter {
+            from('com.example:bom-outer:1.0.+')
+        }
+
+        libsInner {
+            from('com.example:bom-inner:1.0.+')
+        }
+    }
+}

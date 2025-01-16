@@ -1,0 +1,40 @@
+plugins {
+    alias(libsOuter.plugins.springBoot)
+    alias(libsOuter.plugins.dependencyManagement)
+}
+
+version = "${serviceVersion}"
+
+dependencies {
+    implementation libsOuter.spring.boot.starter.web
+    testImplementation libsOuter.spring.boot.starter.test
+
+    implementation libsOuter.spring.boot.starter.data.jpa
+    implementation libsOuter.spring.boot.starter.actuator
+
+    developmentOnly libsOuter.spring.boot.devtools
+
+    implementation libsOuter.mapstruct
+    annotationProcessor libsOuter.mapstruct.processor
+
+    runtimeOnly libsOuter.postgres
+    implementation libsOuter.spring.kafka
+
+    implementation libsOuter.datafaker
+
+//    implementation libsOuter.flyway
+
+    implementation libsInner.kafka
+
+    implementation libsInner.user.api
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+tasks.named('bootBuildImage') {
+    docker {
+        imageName = 'user-service'
+    }
+}

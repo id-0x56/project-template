@@ -1,0 +1,21 @@
+group = 'com.example'
+
+allprojects {
+    apply plugin: 'java'
+
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+//        maven {}
+    }
+}
+
+subprojects {
+    dependencies {
+        compileOnly "org.projectlombok:lombok:${lombokExternalVersion}"
+        annotationProcessor "org.projectlombok:lombok:${lombokExternalVersion}"
+    }
+}

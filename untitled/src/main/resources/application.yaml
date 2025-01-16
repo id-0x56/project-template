@@ -1,0 +1,28 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: untitled
+
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DATABASE:database}
+    driver-class-name: org.postgresql.Driver
+    username: ${POSTGRES_USERNAME:username}
+    password: ${POSTGRES_PASSWORD:password}
+
+  jpa:
+    show-sql: true
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        default_schema: public
+
+  kafka:
+    bootstrap-servers: localhost:9092, localhost:9093, localhost:9094
+    consumer:
+      group-id: default-group
+    template:
+      default-topic: default

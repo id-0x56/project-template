@@ -1,0 +1,19 @@
+rootProject.name = 'untitled'
+
+dependencyResolutionManagement {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+//        maven {}
+    }
+
+    versionCatalogs {
+        libsOuter {
+            from('com.example:bom-outer:1.0.+')
+        }
+
+        libsInner {
+            from('com.example:bom-inner:1.0.+')
+        }
+    }
+}

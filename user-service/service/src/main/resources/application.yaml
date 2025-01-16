@@ -1,0 +1,33 @@
+server:
+  port: ${APP_PORT:8080}
+
+spring:
+  application:
+    name: ${APP_NAME:user-service}
+
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DATABASE:database}
+    driver-class-name: org.postgresql.Driver
+    username: ${POSTGRES_USERNAME:username}
+    password: ${POSTGRES_PASSWORD:password}
+
+  jpa:
+    show-sql: true
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        default_schema: public
+
+  flyway:
+    clean-disabled: true
+    locations: classpath:database/migrations
+    schemas: public
+
+  kafka:
+    bootstrap-servers: ${KAFKA_1_HOST:localhost}:${KAFKA_1_PORT:9092}, ${KAFKA_2_HOST:localhost}:${KAFKA_2_PORT:9093}, ${KAFKA_3_HOST:localhost}:${KAFKA_3_PORT:9094}
+    consumer:
+      group-id: ${KAFKA_CONSUMER_GROUP:default-group}
+    template:
+      default-topic: ${KAFKA_DEFAULT_TOPIC:default}

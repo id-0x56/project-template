@@ -1,0 +1,24 @@
+apply plugin: 'java-library'
+apply plugin: 'maven-publish'
+
+publishing {
+	publications {
+		maven(MavenPublication) {
+			groupId = 'com.example'
+			artifactId = 'kafka'
+			version = "${kafkaVersion}"
+
+			from components.java
+		}
+	}
+
+	repositories {
+//        maven {}
+	}
+}
+
+dependencies {
+	compileOnly "org.springframework.boot:spring-boot-starter-web:${springBootExternalVersion}"
+
+	implementation "org.springframework.kafka:spring-kafka:${kafkaExternalVersion}"
+}

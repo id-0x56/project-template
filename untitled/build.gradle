@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+    alias(libsOuter.plugins.springBoot)
+    alias(libsOuter.plugins.dependencyManagement)
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly libsOuter.lombok
+    annotationProcessor libsOuter.lombok
+
+    implementation libsOuter.spring.boot.starter.web
+    testImplementation libsOuter.spring.boot.starter.test
+
+    implementation libsOuter.spring.boot.starter.data.jpa
+    implementation libsOuter.spring.boot.starter.actuator
+
+    developmentOnly libsOuter.spring.boot.devtools
+
+    runtimeOnly libsOuter.postgres
+    implementation libsOuter.spring.kafka
+
+    implementation libsOuter.datafaker
+
+    implementation libsInner.common
+    implementation libsInner.kafka
+
+    implementation libsInner.user.api
+}
