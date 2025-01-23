@@ -5,6 +5,12 @@ include('service')
 
 gradle.allprojects {
     ext {
+        // Nexus
+        nexusGroup = NEXUS_GROUP
+        nexusUrl = NEXUS_URL
+        nexusUsername = NEXUS_USERNAME
+        nexusPassword = NEXUS_PASSWORD
+
         apiVersion = '1.0.0'
         serviceVersion = '1.0.0'
     }
@@ -14,7 +20,13 @@ dependencyResolutionManagement {
     repositories {
         mavenLocal()
         mavenCentral()
-//        maven {}
+        maven {
+            url NEXUS_GROUP
+            credentials {
+                username NEXUS_USERNAME
+                password NEXUS_PASSWORD
+            }
+        }
     }
 
     versionCatalogs {

@@ -7,6 +7,12 @@ include('kafka')
 
 gradle.allprojects {
     ext {
+        // Nexus
+        nexusGroup = NEXUS_GROUP
+        nexusUrl = NEXUS_URL
+        nexusUsername = NEXUS_USERNAME
+        nexusPassword = NEXUS_PASSWORD
+
         // Internal
         commonVersion = '1.0.0'
         bomInnerVersion = '1.0.0'
@@ -16,8 +22,15 @@ gradle.allprojects {
         // External
         lombokExternalVersion = '1.18.36'
 
+        pluginSpringBootExternalVersion = '3.4.1'
+        pluginDependencyManagementExternalVersion = '1.1.7'
+
         springBootExternalVersion = '3.4.1'
-        dependencyManagementExternalVersion = '1.1.7'
+
+        grpcExternalVersion = '1.63.0'
+        grpcSpringBootExternalVersion = '3.1.0.RELEASE'
+        protobufExternalVersion = '4.29.3'
+        javaxExternalVersion = '1.3.2'
 
         mapstructExternalVersion = '1.6.3'
 

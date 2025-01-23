@@ -31,3 +31,7 @@ spring:
       group-id: ${KAFKA_CONSUMER_GROUP:default-group}
     template:
       default-topic: ${KAFKA_DEFAULT_TOPIC:default}
+
+grpc:
+  server:
+    port: 9091

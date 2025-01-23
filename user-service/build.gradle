@@ -9,7 +9,13 @@ allprojects {
 	repositories {
 		mavenLocal()
 		mavenCentral()
-//        maven {}
+		maven {
+			url "${nexusGroup}"
+			credentials {
+				username "${nexusUsername}"
+				password "${nexusPassword}"
+			}
+		}
 	}
 }
 

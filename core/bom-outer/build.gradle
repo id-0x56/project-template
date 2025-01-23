@@ -13,14 +13,23 @@ publishing {
     }
 
     repositories {
-//        maven {}
+        maven {
+            url "${nexusUrl}"
+            credentials {
+                username "${nexusUsername}"
+                password "${nexusPassword}"
+            }
+        }
     }
 }
 
 catalog {
     versionCatalog {
-        plugin('springBoot', 'org.springframework.boot').version("${springBootExternalVersion}")
-        plugin('dependencyManagement', 'io.spring.dependency-management').version("${dependencyManagementExternalVersion}")
+        plugin('springBoot', 'org.springframework.boot').version("${pluginSpringBootExternalVersion}")
+        plugin('dependencyManagement', 'io.spring.dependency-management').version("${pluginDependencyManagementExternalVersion}")
+
+        library('lombok', "org.projectlombok:lombok:${lombokExternalVersion}")
+        library('lombok.processor', "org.projectlombok:lombok:${lombokExternalVersion}")
 
         library('spring.boot.starter.web', "org.springframework.boot:spring-boot-starter-web:${springBootExternalVersion}")
         library('spring.boot.starter.test', "org.springframework.boot:spring-boot-starter-test:${springBootExternalVersion}")
@@ -31,8 +40,13 @@ catalog {
         library('spring.boot.starter.actuator', "org.springframework.boot:spring-boot-starter-actuator:${springBootExternalVersion}")
         library('spring.boot.devtools', "org.springframework.boot:spring-boot-devtools:${springBootExternalVersion}")
 
-        library('lombok', "org.projectlombok:lombok:${lombokExternalVersion}")
-        library('lombok.processor', "org.projectlombok:lombok:${lombokExternalVersion}")
+        library('grpc.stub', "io.grpc:grpc-stub:${grpcExternalVersion}")
+        library('grpc.protobuf', "io.grpc:grpc-protobuf:${grpcExternalVersion}")
+        library('spring.boot.starter.grpc.server', "net.devh:grpc-server-spring-boot-starter:${grpcSpringBootExternalVersion}")
+        library('spring.boot.starter.grpc.client', "net.devh:grpc-client-spring-boot-starter:${grpcSpringBootExternalVersion}")
+        library('protobuf', "com.google.protobuf:protobuf-java:${protobufExternalVersion}")
+        library('protobuf.util', "com.google.protobuf:protobuf-java-util:${protobufExternalVersion}")
+        library('javax.annotation.api', "javax.annotation:javax.annotation-api:${javaxExternalVersion}")
 
         library('mapstruct', "org.mapstruct:mapstruct:${mapstructExternalVersion}")
         library('mapstruct.processor', "org.mapstruct:mapstruct-processor:${mapstructExternalVersion}")

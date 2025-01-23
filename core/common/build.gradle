@@ -13,7 +13,13 @@ publishing {
     }
 
     repositories {
-//        maven {}
+        maven {
+            url "${nexusUrl}"
+            credentials {
+                username "${nexusUsername}"
+                password "${nexusPassword}"
+            }
+        }
     }
 }
 

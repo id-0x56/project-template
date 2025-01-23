@@ -30,6 +30,11 @@ dependencies {
 
     developmentOnly libsOuter.spring.boot.devtools
 
+    implementation libsOuter.spring.boot.starter.grpc.client
+    implementation libsOuter.protobuf
+    implementation libsOuter.protobuf.util
+    implementation libsOuter.javax.annotation.api
+
     runtimeOnly libsOuter.postgres
     implementation libsOuter.spring.kafka
 

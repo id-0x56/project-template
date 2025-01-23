@@ -26,3 +26,9 @@ spring:
       group-id: default-group
     template:
       default-topic: default
+
+grpc:
+  client:
+    test-client:
+      address: static://localhost:9091
+      negotiation-type: plaintext

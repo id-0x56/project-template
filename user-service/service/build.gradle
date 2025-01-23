@@ -14,6 +14,11 @@ dependencies {
 
     developmentOnly libsOuter.spring.boot.devtools
 
+    implementation libsOuter.spring.boot.starter.grpc.server
+    implementation libsOuter.protobuf
+    implementation libsOuter.protobuf.util
+    implementation libsOuter.javax.annotation.api
+
     implementation libsOuter.mapstruct
     annotationProcessor libsOuter.mapstruct.processor
 

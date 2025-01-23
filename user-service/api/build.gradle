@@ -1,6 +1,18 @@
 apply plugin: 'java-library'
 apply plugin: 'maven-publish'
 
+apply plugin: "com.google.protobuf"
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "com.google.protobuf:protobuf-gradle-plugin:0.9.4"
+    }
+}
+
 publishing {
     publications {
         maven(MavenPublication) {
@@ -13,7 +25,13 @@ publishing {
     }
 
     repositories {
-        maven {}
+        maven {
+            url "${nexusUrl}"
+            credentials {
+                username "${nexusUsername}"
+                password "${nexusPassword}"
+            }
+        }
     }
 }
 
@@ -21,4 +39,34 @@ dependencies {
     implementation libsOuter.jackson.core
     implementation libsOuter.jackson.annotations
     implementation libsOuter.jackson.databind
+
+    implementation libsOuter.grpc.stub
+    implementation libsOuter.grpc.protobuf
+    implementation libsOuter.protobuf
+    implementation libsOuter.protobuf.util
+    implementation libsOuter.javax.annotation.api
+}
+
+//    pluginProtobufVersion = '0.9.4'
+//    protobufVersion = '4.29.3'
+//    protocVersion = '1.63.0'
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:4.29.3"
+    }
+
+    plugins {
+        grpc {
+            artifact = "io.grpc:protoc-gen-grpc-java:1.63.0"
+        }
+    }
+
+    generateProtoTasks {
+        ofSourceSet('main').configureEach {
+            plugins {
+                grpc {}
+            }
+        }
+    }
 }
